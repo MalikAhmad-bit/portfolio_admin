@@ -1,97 +1,8 @@
-
-  <body>
+<body>
   <?php
   include ('../includes/head.php'); 
   include ('../partials/navbar.php'); 
-
-
-
-
-
 ?>
-<head>
-<style>
-        :root {
-            --bs-card-bg: #fff;
-            --bs-card-color: #000;
-            --bs-card-border-color: #ddd;
-            --bs-card-border-width: 1px;
-            --bs-card-border-radius: 10px;
-            --bs-card-inner-border-radius: 10px;
-            --bs-card-spacer-x: 1.5rem;
-            --bs-card-spacer-y: 1rem;
-            --bs-card-title-spacer-y: 0.75rem;
-            --bs-card-title-color: #333;
-            --bs-card-subtitle-color: #6c757d;
-            --bs-card-cap-bg: #f8f9fa;
-            --bs-card-cap-color: #495057;
-            --bs-card-cap-padding-x: 1.5rem;
-            --bs-card-cap-padding-y: 1rem;
-        }
-
-        .card {
-            background-color: var(--bs-card-bg);
-            border: var(--bs-card-border-width) solid var(--bs-card-border-color);
-            border-radius: var(--bs-card-border-radius);
-            padding: var(--bs-card-spacer-y) var(--bs-card-spacer-x);
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .card-body {
-            flex: 1 1 auto;
-            color: var(--bs-card-color);
-        }
-
-        .card-title {
-            margin-bottom: var(--bs-card-title-spacer-y);
-            color: var(--bs-card-title-color);
-            font-size: 1.25rem;
-            font-weight: bold;
-        }
-
-        .card-description {
-            color: var(--bs-card-subtitle-color);
-            margin-bottom: 1rem;
-        }
-
-        textarea {
-            width: 100%;
-            height: 100px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            resize: none;
-            font-size: 14px;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-
-        button {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .add-btn {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .delete-btn {
-            background-color: #f44336;
-            color: white;
-        }
-    </style>
-       
-</head>
       <!-- partial -->
       <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_sidebar.html -->
@@ -99,20 +10,55 @@
          include ('../partials/sidebar.php'); 
 
         ?>
-
-<div class="card mt-4 stretch-card">
-    <div class="card-body">
-        <h4 class="card-title">Links</h4>
-        <p class="card-description">Sidebar Links</p>
-        <form class="forms-sample">
-            <textarea id="linkArea" placeholder="Enter links here..."></textarea>
-            <div class="button-container">
-                <button type="button" class="add-btn" onclick="addLink()">Add Link</button>
-                <button type="button" class="delete-btn" onclick="deleteLink()">Delete Last Link</button>
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title"> Profile </h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Personal Info</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Form elements</li>
+                </ol>
+              </nav>
             </div>
-        </form>
-    </div>
-</div>
+            <div class="row">
+              <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Links Builder</h4>
+                <p class="card-description">Dynamic Link Inputs</p>
+                <form class="forms-sample" id="linksForm">
+                <div id="linkInputs">
+                    <div class="link-group mb-3">
+                    <label for="linkName_1">Link Name</label>
+                    <input type="text" class="form-control mb-2" id="linkName_1" placeholder="Link Name" name="linkName[]">
+                    <label for="linkTarget_1">Link Target</label>
+                    <input type="text" class="form-control" id="linkTarget_1" placeholder="Link Target" name="linkTarget[]">
+                    </div>
+                </div>
+                <button type="button" class="btn btn-success mb-3 mt-3" id="addNewLink">Add New</button>
+                <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                <button type="reset" class="btn btn-light">Cancel</button>
+                </form>
+            </div>
+            </div>
+
+
+
+              </div>
+
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2023 <a href="https://www.bootstrapdash.com/" target="_blank">BootstrapDash</a>. All rights reserved.</span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
         <!-- main-panel ends -->
       </div>
       <!-- page-body-wrapper ends -->
@@ -136,23 +82,31 @@
     <script src="../../assets/js/file-upload.js"></script>
     <script src="../../assets/js/typeahead.js"></script>
     <script src="../../assets/js/select2.js"></script>
+    <!-- jQuery (Required for dynamic input handling) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    var linkCount = 1;
+
+    $('#addNewLink').on('click', function() {
+      linkCount++;
+      var newLinkInputs = `
+        <div class="link-group mb-3">
+          <label for="linkName_${linkCount}">Link Name</label>
+          <input type="text" class="form-control mb-2" id="linkName_${linkCount}" placeholder="Link Name" name="linkName[]">
+          <label for="linkTarget_${linkCount}">Link Target</label>
+          <input type="text" class="form-control" id="linkTarget_${linkCount}" placeholder="Link Target" name="linkTarget[]">
+          <button type="button" class="btn btn-danger mt-2 remove-link">Remove</button>
+        </div>
+      `;
+      $('#linkInputs').append(newLinkInputs);
+    });
+
+    $(document).on('click', '.remove-link', function() {
+      $(this).closest('.link-group').remove();
+    });
+  });
+</script>
     <!-- End custom js for this page -->
   </body>
-  <script>
-    function addLink() {
-        let link = prompt("Enter the link:");
-        if (link) {
-            let textArea = document.getElementById("linkArea");
-            textArea.value += link + "\n";
-        }
-    }
-
-    function deleteLink() {
-        let textArea = document.getElementById("linkArea");
-        let lines = textArea.value.trim().split("\n");
-        lines.pop(); // Remove the last link
-        textArea.value = lines.join("\n");
-    }
-</script>
-
 </html>
