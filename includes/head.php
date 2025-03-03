@@ -9,7 +9,7 @@ $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/portfolio-admin/';
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Purple Admin</title>
+    <title>Saglinks_Panel</title>
 
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="<?= $base_url; ?>/assets/vendors/mdi/css/materialdesignicons.min.css">
@@ -24,5 +24,5 @@ $base_url = 'http://' . $_SERVER['HTTP_HOST'] . '/portfolio-admin/';
     <link rel="stylesheet" href="<?= $base_url; ?>assets/css/style.css">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="<?= $base_url; ?>/assets/images/favicon.png" />
+    <link rel="shortcut icon" href="<?= $base_url; ?>/assets/images/favicon1.png" />
   </head>
